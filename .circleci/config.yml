@@ -70,10 +70,10 @@ workflows:
     jobs:
       - build_macos:
           <<: *any
-      - build_linux:
-          <<: *any
+      # Not build on linux rn, https://github.com/electron/spectron/issues/323
+      # - build_linux:
+      #     <<: *any
       - publish:
           <<: *tagged
           requires:
             - build_macos
-            - build_linux
