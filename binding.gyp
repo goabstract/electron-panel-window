@@ -9,6 +9,9 @@
             "link_settings": {
               "conditions":[
                   ['OS=="mac"', {
+                      "sources": [
+                          "functions.cc"
+                      ],
                       "libraries": [
                           'Foundation.framework',
                           'AppKit.framework',

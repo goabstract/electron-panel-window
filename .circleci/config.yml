@@ -9,15 +9,26 @@ macos: &macos
 root: &root
   working_directory: ~/repo
 
+tagged: &tagged
+  filters:
+    tags:
+      only: /^v.*/
+    branches:
+      ignore: /.*/
+
+any: &any
+  filters:
+    tags:
+      only: /.*/
+
 version: 2
 jobs:
   build_macos:
-    <<: *docker
+    <<: *macos
     <<: *root
 
     steps:
       - checkout
-      # Download and cache dependencies
       - restore_cache:
           keys:
           - v2-dependencies-{{ checksum "package.json" }}
@@ -32,12 +43,11 @@ jobs:
       - run: yarn test
 
   build_linux:
-    <<: *macos
+    <<: *docker
     <<: *root
 
     steps:
       - checkout
-      # Download and cache dependencies
       - restore_cache:
           keys:
           - v2-mac-dependencies-{{ checksum "package.json" }}
@@ -50,10 +60,29 @@ jobs:
             - node_modules
           key: v2-mac-dependencies-{{ checksum "package.json" }}
       - run: yarn test
+  publish:
+    <<: *docker
+    <<: *root
+
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+          - v2-dependencies-{{ checksum "package.json" }}
+          # fallback to using the latest cache if no exact match is found
+          - v2-dependencies-
+      - run: npm publish --access public
 
 workflows:
   version: 2
   build:
     jobs:
-      - build_macos
-      - build_linux
+      - build_macos:
+          <<: *any
+      - build_linux:
+          <<: *any
+      - publish:
+          <<: *tagged
+          requires:
+            - build_macos
+            - build_linux
