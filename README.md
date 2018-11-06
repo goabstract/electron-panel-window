@@ -4,7 +4,7 @@ Enables creating a browser window in Electron that behaves like a [Panel](https:
 
 ## Usage
 
-Use `PanelWindow` as you would [BrowserWindow](https://electronjs.org/docs/api/browser-window).
+Use `PanelWindow` as you would [BrowserWindow](https://electronjs.org/docs/api/browser-window). All of the methods exposed in this module **must be used** on the main process. Using the methods in a renderer process will result in your app crashing.
 
 ```javascript
 import { PanelWindow } from 'electron-panel';
