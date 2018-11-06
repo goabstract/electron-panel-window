@@ -1,4 +1,4 @@
-[![npm version](https://badge.fury.io/js/electron-panel-window.svg)](https://badge.fury.io/js/electron-panel-window) [![CircleCI](https://circleci.com/gh/goabstract/electron-panel-window.svg?style=svg)](https://circleci.com/gh/goabstract/electron-panel-window)
+[![npm version](https://badge.fury.io/js/electron-panel-window.svg)](https://badge.fury.io/js/electron-panel-window) [![CircleCI](https://circleci.com/gh/goabstract/electron-panel.svg?style=svg)](https://circleci.com/gh/goabstract/electron-panel)
 
 # electron-panel-window
 
