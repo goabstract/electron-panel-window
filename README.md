@@ -1,10 +1,10 @@
 # electron-panel
 
-Enables creating a browser window in Electron that behaves like an NSPanel.
+Enables creating a browser window in Electron that behaves like a [Panel](https://developer.apple.com/documentation/appkit/nspanel). Panels are typically used for auxillary windows and do not activate the application – as such they can appear ontop of other apps in the same way as Spotlight or 1Password, for example.
 
 ## Usage
 
-Use PanelWindow as you would [BrowserWindow](https://electronjs.org/docs/api/browser-window).
+Use `PanelWindow` as you would [BrowserWindow](https://electronjs.org/docs/api/browser-window).
 
 ```javascript
 import { PanelWindow } from 'electron-panel';
@@ -34,7 +34,7 @@ makePanel(currentWindow);
 makeKeyWindow(currentWindow);
 ```
 
-## Building
+## Development
 
 To compile the extension for the first time, run 
 
