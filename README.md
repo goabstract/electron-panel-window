@@ -1,3 +1,5 @@
+[![npm version](https://badge.fury.io/js/electron-panel.svg)](https://badge.fury.io/js/electron-panel) [![CircleCI](https://circleci.com/gh/goabstract/electron-panel.svg?style=svg)](https://circleci.com/gh/goabstract/electron-panel)
+
 # electron-panel
 
 Enables creating a browser window in Electron that behaves like a [Panel](https://developer.apple.com/documentation/appkit/nspanel). Panels are typically used for auxillary windows and do not activate the application – as such they can appear ontop of other apps in the same way as Spotlight or 1Password, for example.
