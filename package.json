@@ -1,7 +1,7 @@
 {
   "name": "electron-panel-window",
   "description": "Create Electron BrowserWindow's that act like Panels",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "author": "Tom Moor <tom@goabstract.com>",
   "main": "index.js",
   "scripts": {
