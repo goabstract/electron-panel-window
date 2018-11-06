@@ -1,20 +1,32 @@
 {
   "name": "electron-panel",
+  "description": "Create Electron BrowserWindow's that act like Panels",
   "version": "0.0.1",
   "author": "Tom Moor <tom@goabstract.com>",
   "main": "index.js",
   "scripts": {
     "configure": "node-gyp configure",
-    "build": "node-gyp build"
+    "build": "node-gyp build",
+    "test": "mocha"
   },
   "devDependencies": {
+    "electron": "1.8.8",
+    "mocha": "^5.2.0",
     "nan": "^2.0.5",
-    "node-gyp": "^1.0.3"
+    "node-gyp": "^1.0.3",
+    "spectron": "^5.0.0"
   },
   "peerDependencies": {
     "electron": ">= 1.8.0"
   },
   "dependencies": {
     "bindings": "^1.2.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/goabstract/electron-panel"
+  },
+  "bugs": {
+    "url": "https://github.com/goabstract/electron-panel/issues"
   }
 }
