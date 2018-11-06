@@ -1,5 +1,5 @@
 {
-  "name": "electron-panel",
+  "name": "electron-panel-window",
   "description": "Create Electron BrowserWindow's that act like Panels",
   "version": "1.0.3",
   "author": "Tom Moor <tom@goabstract.com>",
@@ -24,9 +24,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/goabstract/electron-panel"
+    "url": "git+https://github.com/goabstract/electron-panel-window"
   },
   "bugs": {
-    "url": "https://github.com/goabstract/electron-panel/issues"
+    "url": "https://github.com/goabstract/electron-panel-window/issues"
   }
 }

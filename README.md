@@ -1,6 +1,6 @@
-[![npm version](https://badge.fury.io/js/electron-panel.svg)](https://badge.fury.io/js/electron-panel) [![CircleCI](https://circleci.com/gh/goabstract/electron-panel.svg?style=svg)](https://circleci.com/gh/goabstract/electron-panel)
+[![npm version](https://badge.fury.io/js/electron-panel-window.svg)](https://badge.fury.io/js/electron-panel-window) [![CircleCI](https://circleci.com/gh/goabstract/electron-panel-window.svg?style=svg)](https://circleci.com/gh/goabstract/electron-panel-window)
 
-# electron-panel
+# electron-panel-window
 
 Enables creating a browser window in Electron that behaves like a [Panel](https://developer.apple.com/documentation/appkit/nspanel). Panels are typically used for auxillary windows and do not activate the application – as such they can appear ontop of other apps in the same way as Spotlight or 1Password, for example.
 
@@ -9,7 +9,7 @@ Enables creating a browser window in Electron that behaves like a [Panel](https:
 Use `PanelWindow` as you would [BrowserWindow](https://electronjs.org/docs/api/browser-window). All of the methods exposed in this module **must be used** on the main process. Using the methods in a renderer process will result in your app crashing.
 
 ```javascript
-import { PanelWindow } from 'electron-panel';
+import { PanelWindow } from 'electron-panel-window';
 
 const win = new PanelWindow({
   width: 800,
@@ -25,7 +25,7 @@ You can also access the utility methods directly:
 
 ```javascript
 import { remote } from 'electron';
-import { makePanel, makeKeyWindow } from 'electron-panel';
+import { makePanel, makeKeyWindow } from 'electron-panel-window';
 
 const currentWindow = remote.getCurrentWindow();
 
@@ -54,7 +54,7 @@ $ yarn test
 
 ## Contributing
 
-This project is maintained by [Abstract](https://www.goabstract.com). We are very willing to accept contributions, first please ensure there is a relavant [issue in the tracker](https://github.com/goabstract/electron-panel/issues) and an approach has been discussed before beginning to write code – this makes it more likely we will be able to accept your contribution and ensure nobody's time (especially yours!) is wasted.
+This project is maintained by [Abstract](https://www.goabstract.com). We are very willing to accept contributions, first please ensure there is a relavant [issue in the tracker](https://github.com/goabstract/electron-panel-window/issues) and an approach has been discussed before beginning to write code – this makes it more likely we will be able to accept your contribution and ensure nobody's time (especially yours!) is wasted.
 
 ## Details
 
@@ -68,5 +68,5 @@ File | Contents
 ## License
 
 This project is under MIT.
-See [LICENSE](https://github.com/goabstract/electron-panel/blob/master/LICENSE)
+See [LICENSE](https://github.com/goabstract/electron-panel-window/blob/master/LICENSE)
 
