@@ -1,0 +1,23 @@
+{
+  "name": "electron-panel",
+  "version": "0.0.1",
+  "author": "Tom Moor <tom@goabstract.com>",
+  "main": "index.js",
+  "scripts": {
+    "configure": "node-gyp configure",
+    "build": "node-gyp build",
+    "test": "mocha"
+  },
+  "devDependencies": {
+    "nan": "^2.0.5",
+    "mocha": "^2.2.5",
+    "node-gyp": "^1.0.3",
+    "electron": ">= 1.8.0"
+  },
+  "peerDependencies": {
+    "electron": ">= 1.8.0"
+  },
+  "dependencies": {
+    "bindings": "^1.2.1"
+  }
+}
