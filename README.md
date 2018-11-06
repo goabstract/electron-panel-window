@@ -6,7 +6,7 @@ Enables creating a browser window in Electron that behaves like an NSPanel.
 
 Use PanelWindow as you would [BrowserWindow](https://electronjs.org/docs/api/browser-window).
 
-```
+```javascript
 import { PanelWindow } from 'electron-panel';
 
 const win = new PanelWindow({
@@ -14,7 +14,24 @@ const win = new PanelWindow({
   height: 600,
   show: false
 })
+
+// the window will show without activating the application
 win.show();
+```
+
+You can also access the utility methods directly:
+
+```javascript
+import { remote } from 'electron';
+import { makePanel, makeKeyWindow } from 'electron-panel';
+
+const currentWindow = remote.getCurrentWindow();
+
+// convert the window to an NSPanel
+makePanel(currentWindow);
+
+// focus the window without activating the application
+makeKeyWindow(currentWindow);
 ```
 
 ## Building

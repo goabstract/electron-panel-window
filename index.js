@@ -1,7 +1,7 @@
 var BrowserWindow = require('electron').BrowserWindow;
 var NativeExtension = require('bindings')('NativeExtension');
 
-class PanelWindow extends BrowserWindow() {
+class PanelWindow extends BrowserWindow {
   constructor(options) {
     super(options);
     NativeExtension.MakePanel(this.getNativeWindowHandle());
@@ -13,4 +13,12 @@ class PanelWindow extends BrowserWindow() {
   }
 }
 
-module.exports = { PanelWindow }
+module.exports = {
+  PanelWindow,
+  makeKeyWindow: function(window) {
+    return NativeExtension.MakeKeyWindow(window.getNativeWindowHandle());
+  },
+  makePanel: function(window) {
+    return NativeExtension.MakePanel(window.getNativeWindowHandle());
+  }
+}

@@ -28,9 +28,14 @@ NAN_METHOD(MakePanel) {
   if (!mainContentView)
       return info.GetReturnValue().Set(false);
 
+  // Convert the NSWindow class to NSPanel
   object_setClass(mainContentView.window, [PROPanel class]);
 
+  // Ensure that the window is a "non activating panel" which means it won't activate the application
+  // when it becomes key.
   mainContentView.window.styleMask |= NSWindowStyleMaskNonactivatingPanel;
+
+  // Ensure that the window can display over the top of fullscreen apps
   [mainContentView.window setCollectionBehavior: NSWindowCollectionBehaviorTransient | NSWindowCollectionBehaviorMoveToActiveSpace | NSWindowCollectionBehaviorFullScreenAuxiliary ];
   [mainContentView.window setLevel:NSFloatingWindowLevel];
   [mainContentView.window setFloatingPanel:YES];
