@@ -1,18 +1,22 @@
-# Javascript Node CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-javascript/ for more details
-#
+docker: &docker
+  docker:
+    - image: circleci/node:8.9
+
+macos: &macos
+  macos:
+    xcode: "9.1.0" # Node 8.9
+
+root: &root
+  working_directory: ~/repo
+
 version: 2
 jobs:
-  build:
-    macos:
-      xcode: "9.1.0"
-
-    working_directory: ~/repo
+  build_macos:
+    <<: *docker
+    <<: *root
 
     steps:
       - checkout
-
       # Download and cache dependencies
       - restore_cache:
           keys:
@@ -21,12 +25,35 @@ jobs:
           - v1-dependencies-
 
       - run: yarn install --pure-lockfile
-
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-        
-      # run tests!
       - run: yarn test
 
+  build_linux:
+    <<: *macos
+    <<: *root
+
+    steps:
+      - checkout
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - v1-mac-dependencies-{{ checksum "package.json" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-mac-dependencies-
+
+      - run: yarn install --pure-lockfile
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-mac-dependencies-{{ checksum "package.json" }}
+      - run: yarn test
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build_macos
+      - build_linux

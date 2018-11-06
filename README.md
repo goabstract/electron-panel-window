@@ -40,15 +40,23 @@ makeKeyWindow(currentWindow);
 
 To compile the extension for the first time, run 
 
-```
+```bash
 $ yarn
 $ yarn configure
 $ yarn build
 ```
 
-All subsequent builds only need `yarn build`
+All subsequent builds only need `yarn build`. Tests run in Spectron:
 
-## The Parts
+```bash
+$ yarn test
+```
+
+## Contributing
+
+This project is maintained by [Abstract](https://www.goabstract.com). We are very willing to accept contributions, first please ensure there is a relavant [issue in the tracker](https://github.com/goabstract/electron-panel/issues) and an approach has been discussed before beginning to write code – this makes it more likely we will be able to accept your contribution and ensure nobody's time (especially yours!) is wasted.
+
+## Details
 
 File | Contents
 -------------|----------------
