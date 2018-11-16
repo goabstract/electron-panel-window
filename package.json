@@ -12,15 +12,12 @@
   "devDependencies": {
     "electron": "1.8.8",
     "mocha": "^5.2.0",
-    "nan": "^2.0.5",
     "node-gyp": "^1.0.3",
     "spectron": "^5.0.0"
   },
-  "peerDependencies": {
-    "electron": ">= 1.8.0"
-  },
   "dependencies": {
-    "bindings": "^1.2.1"
+    "bindings": "^1.2.1",
+    "nan": "^2.0.5"
   },
   "repository": {
     "type": "git",
