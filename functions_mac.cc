@@ -28,17 +28,27 @@ NAN_METHOD(MakePanel) {
   if (!mainContentView)
       return info.GetReturnValue().Set(false);
 
+  NSWindow* window = mainContentView.window;
+
   // Convert the NSWindow class to NSPanel
-  object_setClass(mainContentView.window, [PROPanel class]);
+  object_setClass(window, [PROPanel class]);
 
   // Ensure that the window is a "non activating panel" which means it won't activate the application
   // when it becomes key.
-  mainContentView.window.styleMask |= NSWindowStyleMaskNonactivatingPanel;
+  window.styleMask |= NSWindowStyleMaskNonactivatingPanel;
+  window.styleMask |= NSWindowStyleMaskFullSizeContentView;
+  
 
   // Ensure that the window can display over the top of fullscreen apps
-  [mainContentView.window setCollectionBehavior: NSWindowCollectionBehaviorTransient | NSWindowCollectionBehaviorMoveToActiveSpace | NSWindowCollectionBehaviorFullScreenAuxiliary ];
-  [mainContentView.window setLevel:NSFloatingWindowLevel];
-  [mainContentView.window setFloatingPanel:YES];
+  [window setCollectionBehavior: NSWindowCollectionBehaviorTransient | NSWindowCollectionBehaviorMoveToActiveSpace | NSWindowCollectionBehaviorFullScreenAuxiliary ];
+  [window setLevel:NSFloatingWindowLevel];
+  [window setFloatingPanel:YES];
+
+  // Hide the traffic light controls
+  [[window standardWindowButton:NSWindowCloseButton] setHidden:YES];
+  [[window standardWindowButton:NSWindowMiniaturizeButton] setHidden:YES];
+  [[window standardWindowButton:NSWindowZoomButton] setHidden:YES];
+
   return info.GetReturnValue().Set(true);
 }
 

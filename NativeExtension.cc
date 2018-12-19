@@ -10,8 +10,6 @@ NAN_MODULE_INIT(InitAll) {
     Nan::GetFunction(Nan::New<FunctionTemplate>(MakePanel)).ToLocalChecked());
   Nan::Set(target, Nan::New("MakeKeyWindow").ToLocalChecked(),
     Nan::GetFunction(Nan::New<FunctionTemplate>(MakeKeyWindow)).ToLocalChecked());
-  // Passing target down to the next NAN_MODULE_INIT
-  // MyObject::Init(target);
 }
 
 NODE_MODULE(NativeExtension, InitAll)
