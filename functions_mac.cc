@@ -15,6 +15,16 @@
 - (BOOL)acceptsFirstResponder {
   return YES;
 }
+- (void)removeObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath context:(nullable void *)context {
+  [self removeObserver:observer forKeyPath:keyPath];
+}
+- (void)removeObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath {
+  if ([keyPath isEqualToString:@"_titlebarBackdropGroupName"]) {
+    NSLog(@"HEYO");
+    return;
+  }
+  [super removeObserver:observer forKeyPath:keyPath];
+}
 @end
 
 NAN_METHOD(MakePanel) {
@@ -35,8 +45,8 @@ NAN_METHOD(MakePanel) {
 
   // Ensure that the window is a "non activating panel" which means it won't activate the application
   // when it becomes key.
-  window.styleMask |= NSWindowStyleMaskNonactivatingPanel;
   window.styleMask |= NSWindowStyleMaskFullSizeContentView;
+  window.styleMask |= NSWindowStyleMaskNonactivatingPanel;
   
 
   // Ensure that the window can display over the top of fullscreen apps
