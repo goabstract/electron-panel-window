@@ -16,14 +16,23 @@
   return YES;
 }
 - (void)removeObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath context:(nullable void *)context {
-  [self removeObserver:observer forKeyPath:keyPath];
-}
-- (void)removeObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath {
+  // macOS Big Sur attempts to remove an observer for the NSTitlebarView that doesn't exist.
+  // This is due to us changing the class from NSWindow -> NSPanel at runtime, it's possible
+  // there is assumed setup that doesn't happen. Details of the exception this is avoiding are 
+  // here: https://github.com/goabstract/electron-panel-window/issues/6 
   if ([keyPath isEqualToString:@"_titlebarBackdropGroupName"]) {
-    NSLog(@"HEYO");
+    NSLog(@"removeObserver ignored");
     return;
   }
-  [super removeObserver:observer forKeyPath:keyPath];
+
+  if (context) {
+    [super removeObserver:observer forKeyPath:keyPath context:context];
+  } else {
+    [super removeObserver:observer forKeyPath:keyPath];
+  }
+}
+- (void)removeObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath {
+  [self removeObserver:observer forKeyPath:keyPath context:NULL];
 }
 @end
 
@@ -45,9 +54,8 @@ NAN_METHOD(MakePanel) {
 
   // Ensure that the window is a "non activating panel" which means it won't activate the application
   // when it becomes key.
-  window.styleMask |= NSWindowStyleMaskFullSizeContentView;
   window.styleMask |= NSWindowStyleMaskNonactivatingPanel;
-  
+  window.styleMask |= NSWindowStyleMaskFullSizeContentView;
 
   // Ensure that the window can display over the top of fullscreen apps
   [window setCollectionBehavior: NSWindowCollectionBehaviorTransient | NSWindowCollectionBehaviorMoveToActiveSpace | NSWindowCollectionBehaviorFullScreenAuxiliary ];
