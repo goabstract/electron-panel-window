@@ -4,7 +4,7 @@ docker: &docker
 
 macos: &macos
   macos:
-    xcode: "9.1.0" # Node 8.9
+    xcode: "10.2.1"
 
 root: &root
   working_directory: ~/repo
